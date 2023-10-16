@@ -17,6 +17,9 @@
       },
       "api": {
         "amplifyapp1010": {}
+      },
+      "storage": {
+        "unfriendly": {}
       }
     }
   }

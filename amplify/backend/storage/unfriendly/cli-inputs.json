@@ -1,0 +1,14 @@
+{
+  "resourceName": "unfriendly",
+  "policyUUID": "40955d47",
+  "bucketName": "ajsunfriendlybucketofstuff",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
