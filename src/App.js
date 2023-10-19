@@ -22,13 +22,13 @@ import {
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
-    fetchNotes();
+   useEffect(() => {
+     fetchNotes();
   }, []);
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
+async function fetchNotes() {
+  const apiData = await API.graphql({ query: listNotes });
+  const notesFromAPI = apiData.data.listNotes.items;
     await Promise.all(
       notesFromAPI.map(async (note) => {
         if (note.image) {
@@ -41,15 +41,15 @@ const App = ({ signOut }) => {
     setNotes(notesFromAPI);
   }
 
-  async function createNote(event) {
-    event.preventDefault();
-    const form = new FormData(event.target);
-    const image = form.get("image");
-    const data = {
-      name: form.get("name"),
-      description: form.get("description"),
-      image: image.name,
-    };
+async function createNote(event) {
+  event.preventDefault();
+  const form = new FormData(event.target);
+  const image = form.get("image");
+  const data = {
+    name: form.get("name"),
+    description: form.get("description"),
+    image: image.name,
+  };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
       query: createNoteMutation,
@@ -59,19 +59,16 @@ const App = ({ signOut }) => {
     event.target.reset();
   }
  
-
-  async function deleteNote({ id, name }) {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
-    await Storage.remove(name);
-    await API.graphql({
-      query: deleteNoteMutation,
-      variables: { input: { id } },
-    });
-  }
-
- 
-
+async function deleteNote({ id, name }) {
+  const newNotes = notes.filter((note) => note.id !== id);
+  setNotes(newNotes);
+  await Storage.remove(name);
+  await API.graphql({
+    query: deleteNoteMutation,
+    variables: { input: { id } },
+  });
+}
+  
 {notes.map((note) => (
   <Flex
     key={note.id || note.name}
@@ -82,6 +79,7 @@ const App = ({ signOut }) => {
       <View
 
 />
+
     <Text as="strong" fontWeight={700}>
       {note.name}
     </Text>
@@ -131,7 +129,14 @@ const App = ({ signOut }) => {
           </Button>
         </Flex>
       </View>
-      <Heading level={2}>Current Notes</Heading>
+      <Heading level={5}>Very Short Sayings</Heading>
+      <table border="0.5px" align="center"><tbody><tr><td>
+      <p><Text as="strong" color={'#666699'}>More about this:</Text></p>
+      <ul>
+      <li>My notes are named after the sequential order of the note.</li>
+      <li>My images are random from my folders.</li>
+      <li>One of them was from an old GridWorld character!</li>
+      </ul>
       <View margin="3rem 0">
       {notes.map((note) => (
   <Flex
@@ -140,7 +145,7 @@ const App = ({ signOut }) => {
     justifyContent="center"
     alignItems="center"
   >
-    <Text as="strong" fontWeight={700}>
+    <Text as="strong" fontSixe={12} color={'#666699'}>
       {note.name}
     </Text>
     <Text as="span">{note.description}</Text>
@@ -148,20 +153,20 @@ const App = ({ signOut }) => {
       <Image
         src={note.image}
         alt={`visual aid for ${notes.name}`}
-        style={{ width: 400 }}
+        style={{ width: 80 }}
       />
     )}
     <Button variation="link" onClick={() => deleteNote(note)}>
-      Delete note
+    <Text as="strong" fontSize={10} color={'#ff6600'}>
+      Delete
+    </Text>
     </Button>
   </Flex>
 ))}
-      </View>
+      </View></td></tr></tbody></table>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
-   
   );
- 
 };
 
 export default withAuthenticator(App);
