@@ -129,6 +129,7 @@ async function deleteNote({ id, name }) {
           </Button>
         </Flex>
       </View>
+      <a href="links.html" class="w3-bar-item w3-button w3-padding-large">LINKS</a> 
       <Heading level={5}>Very Short Sayings</Heading>
       <table border="0.5px" align="center"><tbody><tr><td>
       <p><Text as="strong" color={'#666699'}>More about this:</Text></p>
