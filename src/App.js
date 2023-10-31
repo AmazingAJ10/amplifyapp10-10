@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
-
 import { listNotes } from "./graphql/queries";
 import {
   createNote as createNoteMutation,
@@ -13,13 +12,18 @@ import {
   Flex,
   Heading,
   Image,
+  TableBody,
+  TableCell,
   Text,
+  Link,
   TextField,
   View,
   withAuthenticator,
+  Table,
+  TableRow,
 } from '@aws-amplify/ui-react';
 
-const App = ({ signOut }) => {
+const App = ({ signOut,user }) => {
   const [notes, setNotes] = useState([]);
 
    useEffect(() => {
@@ -29,6 +33,9 @@ const App = ({ signOut }) => {
 async function fetchNotes() {
   const apiData = await API.graphql({ query: listNotes });
   const notesFromAPI = apiData.data.listNotes.items;
+  console.log("hi")
+  console.log(user.username)
+  console.log("id: " + user.attributes.email)
     await Promise.all(
       notesFromAPI.map(async (note) => {
         if (note.image) {
@@ -49,6 +56,7 @@ async function createNote(event) {
     name: form.get("name"),
     description: form.get("description"),
     image: image.name,
+    author: user.attributes.email,
   };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
@@ -139,35 +147,37 @@ async function deleteNote({ id, name }) {
       <li>One of them was from an old GridWorld character!</li>
       </ul>
       <View margin="3rem 0">
-      {notes.map((note) => (
-  <Flex
-    key={note.id || note.name}
-    direction="row"
-    justifyContent="center"
-    alignItems="center"
-  >
-    <Text as="strong" fontSixe={12} color={'#666699'}>
-      {note.name}
-    </Text>
-    <Text as="span">{note.description}</Text>
+        
+      <Table><TableBody>{notes.map((note) => (
+      <TableRow key={note.id || note.name}>
+        <TableCell>
+        <Text as="strong" fontSixe={12} color={'#666699'}>
+        {note.author.substring(0,note.author.indexOf("@"))}
+        </Text></TableCell><TableCell><Link
+    href={note.description}
+    color="#007EB9"
+    isExternal={true}
+    >
+    {note.name}
+    </Link>
+    </TableCell><TableCell>
     {note.image && (
       <Image
         src={note.image}
         alt={`visual aid for ${notes.name}`}
         style={{ width: 80 }}
       />
-    )}
+    )}</TableCell><TableCell>
     <Button variation="link" onClick={() => deleteNote(note)}>
     <Text as="strong" fontSize={10} color={'#ff6600'}>
       Delete
     </Text>
-    </Button>
-  </Flex>
-))}
+    </Button></TableCell></TableRow>))}
+    </TableBody></Table>
       </View></td></tr></tbody></table>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
-  );
-};
+  )
+    }
 
 export default withAuthenticator(App);
