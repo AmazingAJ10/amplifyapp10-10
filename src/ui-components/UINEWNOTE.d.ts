@@ -5,8 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EditProfileProps } from "./EditProfile";
-import { FlexProps } from "@aws-amplify/ui-react";
+import { MyIconProps } from "./MyIcon";
+import { FlexProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtondefaultfalseprimaryProps } from "./Buttondefaultfalseprimary";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -18,11 +19,25 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type UINEWNOTEOverridesProps = {
-    UINEWNOTE?: PrimitiveOverrideProps<FlexProps>;
-    EditProfile?: EditProfileProps;
+export declare type UINewNoteOverridesProps = {
+    UINewNote?: PrimitiveOverrideProps<FlexProps>;
+    Content?: PrimitiveOverrideProps<FlexProps>;
+    "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
+    MyIcon?: MyIconProps;
+    "New Note"?: PrimitiveOverrideProps<TextProps>;
+    Profile?: PrimitiveOverrideProps<FlexProps>;
+    image?: PrimitiveOverrideProps<ViewProps>;
+    "Upload New Image"?: PrimitiveOverrideProps<TextProps>;
+    Forms?: PrimitiveOverrideProps<FlexProps>;
+    TextField38473414?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField38473415?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3991529?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField38473416?: PrimitiveOverrideProps<TextFieldProps>;
+    "Button/default/false/primary"?: ButtondefaultfalseprimaryProps;
 } & EscapeHatchProps;
-export declare type UINEWNOTEProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: UINEWNOTEOverridesProps | undefined | null;
+export declare type UINewNoteProps = React.PropsWithChildren<Partial<FlexProps> & {
+    note?: any;
+} & {
+    overrides?: UINewNoteOverridesProps | undefined | null;
 }>;
-export default function UINEWNOTE(props: UINEWNOTEProps): React.ReactElement;
+export default function UINewNote(props: UINewNoteProps): React.ReactElement;

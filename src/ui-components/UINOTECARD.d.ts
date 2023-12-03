@@ -5,8 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ActionCardProps } from "./ActionCard";
-import { FlexProps } from "@aws-amplify/ui-react";
+import { FlexProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -18,11 +17,18 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type UINOTECARDOverridesProps = {
-    UINOTECARD?: PrimitiveOverrideProps<FlexProps>;
-    ActionCard?: ActionCardProps;
+export declare type UINoteCardOverridesProps = {
+    UINoteCard?: PrimitiveOverrideProps<FlexProps>;
+    image?: PrimitiveOverrideProps<ImageProps>;
+    "Card Area"?: PrimitiveOverrideProps<FlexProps>;
+    "Main Text"?: PrimitiveOverrideProps<FlexProps>;
+    "Note Name"?: PrimitiveOverrideProps<TextProps>;
+    "Note Link"?: PrimitiveOverrideProps<TextProps>;
+    "Note User"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type UINOTECARDProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: UINOTECARDOverridesProps | undefined | null;
+export declare type UINoteCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    note?: any;
+} & {
+    overrides?: UINoteCardOverridesProps | undefined | null;
 }>;
-export default function UINOTECARD(props: UINOTECARDProps): React.ReactElement;
+export default function UINoteCard(props: UINoteCardProps): React.ReactElement;

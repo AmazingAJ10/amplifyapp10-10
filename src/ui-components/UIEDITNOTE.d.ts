@@ -5,8 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EditProfileProps } from "./EditProfile";
-import { FlexProps } from "@aws-amplify/ui-react";
+import { MyIconProps } from "./MyIcon";
+import { FlexProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtondefaultfalseprimaryProps } from "./Buttondefaultfalseprimary";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -18,11 +19,24 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type UIEDITNOTEOverridesProps = {
-    UIEDITNOTE?: PrimitiveOverrideProps<FlexProps>;
-    EditProfile?: EditProfileProps;
+export declare type UIEditNoteOverridesProps = {
+    UIEditNote?: PrimitiveOverrideProps<FlexProps>;
+    Content?: PrimitiveOverrideProps<FlexProps>;
+    "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
+    MyIcon?: MyIconProps;
+    "Edit Note"?: PrimitiveOverrideProps<TextProps>;
+    Profile?: PrimitiveOverrideProps<FlexProps>;
+    image?: PrimitiveOverrideProps<ViewProps>;
+    Forms?: PrimitiveOverrideProps<FlexProps>;
+    TextField3997711?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3997712?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3997713?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3997714?: PrimitiveOverrideProps<TextFieldProps>;
+    "Button/default/false/primary"?: ButtondefaultfalseprimaryProps;
 } & EscapeHatchProps;
-export declare type UIEDITNOTEProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: UIEDITNOTEOverridesProps | undefined | null;
+export declare type UIEditNoteProps = React.PropsWithChildren<Partial<FlexProps> & {
+    nx?: any;
+} & {
+    overrides?: UIEditNoteOverridesProps | undefined | null;
 }>;
-export default function UIEDITNOTE(props: UIEDITNOTEProps): React.ReactElement;
+export default function UIEditNote(props: UIEditNoteProps): React.ReactElement;
