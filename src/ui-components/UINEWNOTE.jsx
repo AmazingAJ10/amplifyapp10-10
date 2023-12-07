@@ -45,10 +45,6 @@ export default function UINewNote(props) {
       },
     });
   };
-  const buttonSlashdefaultSlashfalseSlashprimaryOnMouseOut = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
   return (
     <Flex
       gap="16px"
@@ -282,9 +278,6 @@ export default function UINewNote(props) {
           backgroundColor="rgba(78,165,202,1)"
           onClick={() => {
             buttonSlashdefaultSlashfalseSlashprimaryOnClick();
-          }}
-          onMouseOut={() => {
-            buttonSlashdefaultSlashfalseSlashprimaryOnMouseOut();
           }}
           {...getOverrideProps(overrides, "Button/default/false/primary")}
         ></Buttondefaultfalseprimary>
